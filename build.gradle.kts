@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "kr.entree"
-version = VersionTask.readVersion()
+version = VersionTask.readVersion(project)
 
 repositories {
     mavenCentral()

@@ -17,6 +17,7 @@
 package kr.entree.spigradle.util.build
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.Project
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
@@ -29,8 +30,8 @@ import java.io.File
 @Suppress("UnstableApiUsage")
 open class VersionTask : DefaultTask() {
     companion object {
-        val versionFile get() = File("version.txt")
-        fun readVersion() = versionFile.readText()
+        fun getVersionFile(project: Project) = File("${project.projectDir}/version.txt")
+        fun readVersion(project: Project) = getVersionFile(project).readText()
     }
 
     @Input
@@ -39,6 +40,6 @@ open class VersionTask : DefaultTask() {
 
     @TaskAction
     fun execute() {
-        versionFile.writeText(version.get())
+        getVersionFile(project).writeText(version.get())
     }
 }
