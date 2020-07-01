@@ -31,7 +31,7 @@
   "release": {
     "repositoryUrl": "https://github.com/EntryPointKR/spigradle-util",
     "branches": [
-      "master"
+      "master", "<default>"
     ],
     "tagFormat": "v${version}",
     "plugins": [
