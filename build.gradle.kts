@@ -2,7 +2,7 @@
 
 plugins {
     java
-    `spigradle-publish`
+    `spigradle-util-publish`
 }
 
 group = "kr.entree"
