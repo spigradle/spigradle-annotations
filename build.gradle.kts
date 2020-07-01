@@ -1,12 +1,14 @@
 @file:Suppress("UnstableApiUsage")
 
+import kr.entree.spigradle.util.build.VersionTask
+
 plugins {
     java
     `spigradle-util-publish`
 }
 
 group = "kr.entree"
-version = "1.0"
+version = VersionTask.readVersion()
 
 repositories {
     mavenCentral()
