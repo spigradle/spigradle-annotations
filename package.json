@@ -29,7 +29,7 @@
     }
   },
   "release": {
-    "repositoryUrl": "https://github.com/EntryPointKR/spigradle-util",
+    "repositoryUrl": "https://github.com/spigradle/spigradle-annotations",
     "branches": [
       "master", "<default>"
     ],

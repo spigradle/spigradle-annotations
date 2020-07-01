@@ -1,10 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
-import kr.entree.spigradle.util.build.VersionTask
+import kr.entree.spigradle.annotations.build.VersionTask
 
 plugins {
     java
-    `spigradle-util-publish`
+    `spigradle-annotations-publish`
 }
 
 group = "kr.entree"

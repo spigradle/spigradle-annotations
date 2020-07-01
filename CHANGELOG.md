@@ -3,4 +3,4 @@
 
 ### Features
 
-* initial commit ([0db76bc](https://github.com/EntryPointKR/spigradle-util/commit/0db76bc47680121552915a4d9c4fb58bffe0c403))
+* initial commit ([0db76bc](https://github.com/EntryPointKR/spigradle-annotations/commit/0db76bc47680121552915a4d9c4fb58bffe0c403))
