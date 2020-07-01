@@ -16,8 +16,15 @@
 
 package kr.entree.spigradle;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
- * The annotation used to specify the main class, same with @PluginMain
+ * The annotation used to specify a main class, same with @PluginMain.
  */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.SOURCE)
 public @interface Plugin {
 }

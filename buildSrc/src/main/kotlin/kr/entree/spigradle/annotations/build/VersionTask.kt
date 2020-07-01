@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package kr.entree.spigradle.util.build
+package kr.entree.spigradle.annotations.build
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project

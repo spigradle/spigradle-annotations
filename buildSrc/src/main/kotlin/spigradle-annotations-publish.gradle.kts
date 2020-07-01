@@ -1,4 +1,4 @@
-import kr.entree.spigradle.util.build.VersionTask
+import kr.entree.spigradle.annotations.build.VersionTask
 import java.util.*
 
 plugins {
@@ -8,7 +8,7 @@ plugins {
 
 publishing {
     publications {
-        create("spigradleUtil", MavenPublication::class) {
+        create("spigradleAnnotations", MavenPublication::class) {
             from(components["java"])
         }
     }
@@ -17,17 +17,17 @@ publishing {
 bintray {
     user = findProperty("bintray.publish.user")?.toString()
     key = findProperty("bintray.publish.key")?.toString()
-    setPublications("spigradleUtil")
+    setPublications("spigradleAnnotations")
     publish = true
     pkg.apply {
         repo = "Spigradle"
         name = project.name
         desc = project.description
-        websiteUrl = "https://github.com/EntryPointKR/spigradle-util"
-        githubRepo = "https://github.com/EntryPointKR/spigradle-util"
-        issueTrackerUrl = "https://github.com/EntryPointKR/spigradle-util/issues"
+        websiteUrl = "https://github.com/spigradle/spigradle-annotations"
+        githubRepo = "https://github.com/spigradle/spigradle-annotations"
+        issueTrackerUrl = "https://github.com/spigradle/spigradle-annotations/issues"
         setLicenses("Apache-2.0")
-        vcsUrl = "https://github.com/EntryPointKR/spigradle-util.git"
+        vcsUrl = "https://github.com/spigradle/spigradle-annotations.git"
     }
     project.afterEvaluate {
         pkg.version.apply {
