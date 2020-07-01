@@ -27,8 +27,9 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.QualifiedNameable;
 import javax.lang.model.element.TypeElement;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -50,7 +51,9 @@ public class PluginAnnotationProcessor extends AbstractProcessor {
         if (roundEnv.processingOver() && !pluginName.isEmpty()) {
             val file = new File(processingEnv.getOptions().getOrDefault(PLUGIN_APT_RESULT_PATH_KEY, "build/" + PLUGIN_APT_DEFAULT_PATH));
             file.getParentFile().mkdirs();
-            Files.write(file.toPath(), pluginName.getBytes(StandardCharsets.UTF_8));
+            try (val writer = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8)) {
+                writer.write(pluginName);
+            }
         } else {
             pluginName = Stream.of(PluginMain.class, Plugin.class)
                     .flatMap(annotation -> roundEnv.getElementsAnnotatedWith(annotation).stream()
