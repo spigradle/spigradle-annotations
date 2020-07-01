@@ -17,7 +17,7 @@
 package kr.entree.spigradle;
 
 /**
- * The annotation used to specify the main class.
+ * The annotation used to specify a main class.
  */
 public @interface PluginMain {
 }

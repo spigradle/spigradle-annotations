@@ -1,2 +1,2 @@
-rootProject.name = "spigradle-util"
+rootProject.name = "spigradle-annotations"
 
