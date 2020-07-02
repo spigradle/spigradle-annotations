@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package kr.entree.spigradle.annotations.processor;
+package kr.entree.spigradle.annotations;
 
 import com.google.auto.service.AutoService;
-import kr.entree.spigradle.Plugin;
-import kr.entree.spigradle.PluginMain;
 import lombok.SneakyThrows;
 import lombok.val;
 
@@ -36,7 +34,7 @@ import java.util.stream.Stream;
 /**
  * The annotation processor for @PluginMain or @Plugin
  */
-@SupportedAnnotationTypes({"kr.entree.spigradle.PluginMain", "kr.entree.spigradle.Plugin"})
+@SupportedAnnotationTypes({"kr.entree.spigradle.annotations.PluginMain", "kr.entree.spigradle.annotations.Plugin"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedOptions(PluginAnnotationProcessor.PLUGIN_APT_RESULT_PATH_KEY)
 @AutoService(Processor.class)
