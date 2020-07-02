@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/spigradle/spigradle-annotations/compare/v1.1.0...v1.2.0) (2020-07-02)
+
+
+### Features
+
+* support incremental APT for gradle ([93f0bf1](https://github.com/spigradle/spigradle-annotations/commit/93f0bf1eea19eb762a90aee9285b88425aa30287))
+
 # [1.1.0](https://github.com/spigradle/spigradle-annotations/compare/v1.0.0...v1.1.0) (2020-07-01)
 
 
