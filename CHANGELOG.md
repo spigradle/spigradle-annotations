@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/spigradle/spigradle-annotations/compare/v1.2.0...v2.0.0) (2020-07-02)
+
+
+### Code Refactoring
+
+* change package to kr.entree.spigradle.annotations ([49817e1](https://github.com/spigradle/spigradle-annotations/commit/49817e1a700fab3a57bce02c15daebf70d4294e9))
+
+
+### BREAKING CHANGES
+
+* repackage all classes to kr.entree.spigradle.annotations
+
 # [1.2.0](https://github.com/spigradle/spigradle-annotations/compare/v1.1.0...v1.2.0) (2020-07-02)
 
 
