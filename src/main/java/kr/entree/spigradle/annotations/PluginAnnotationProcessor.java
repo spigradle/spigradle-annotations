@@ -53,12 +53,12 @@ public class PluginAnnotationProcessor extends AbstractProcessor {
                 writer.write(pluginName);
             }
         } else {
-            pluginName = Stream.of(PluginMain.class, Plugin.class)
+            Stream.of(PluginMain.class, Plugin.class)
                     .flatMap(annotation -> roundEnv.getElementsAnnotatedWith(annotation).stream()
                             .filter(it -> it instanceof QualifiedNameable && it.getAnnotation(annotation) != null))
                     .findAny()
                     .map(it -> ((QualifiedNameable) it).getQualifiedName().toString())
-                    .orElse("");
+                    .ifPresent(name -> pluginName = name);
         }
         return true;
     }
