@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/spigradle/spigradle-annotations/compare/v2.0.0...v2.0.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **apt:** set 'pluginName' only if presented ([314c10f](https://github.com/spigradle/spigradle-annotations/commit/314c10f38d82a46183d052e79363af70d2eb6878))
+
 # [2.0.0](https://github.com/spigradle/spigradle-annotations/compare/v1.2.0...v2.0.0) (2020-07-02)
 
 
