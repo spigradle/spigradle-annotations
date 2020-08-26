@@ -22,11 +22,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The annotation used to specify a main class, same with @PluginMain.
+ * The annotation used to specify a main class of Spigot plugin.
  *
- * @deprecated since 2.1.0, use instead {@link SpigotPlugin} or {@link BungeePlugin} or {@link NukkitPlugin} or {@link PluginMain} ...
+ * @since 2.1.0
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
-public @interface Plugin {
+public @interface SpigotPlugin {
 }

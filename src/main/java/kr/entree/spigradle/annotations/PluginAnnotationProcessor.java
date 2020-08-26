@@ -27,39 +27,87 @@ import javax.lang.model.element.TypeElement;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.annotation.Annotation;
 import java.nio.charset.StandardCharsets;
-import java.util.Set;
-import java.util.stream.Stream;
+import java.util.*;
 
 /**
- * The annotation processor for @PluginMain or @Plugin
+ * The annotation processor for {@link SpigotPlugin}, {@link BungeePlugin}, {@link NukkitPlugin} ...
  */
-@SupportedAnnotationTypes({"kr.entree.spigradle.annotations.PluginMain", "kr.entree.spigradle.annotations.Plugin"})
+@SupportedAnnotationTypes({
+        "kr.entree.spigradle.annotations.SpigotPlugin",
+        "kr.entree.spigradle.annotations.BungeePlugin",
+        "kr.entree.spigradle.annotations.NukkitPlugin",
+        "kr.entree.spigradle.annotations.PluginMain",
+        "kr.entree.spigradle.annotations.Plugin"
+})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-@SupportedOptions(PluginAnnotationProcessor.PLUGIN_APT_RESULT_PATH_KEY)
+@SupportedOptions({
+        PluginAnnotationProcessor.SPIGOT_PATH_KEY,
+        PluginAnnotationProcessor.BUNGEE_PATH_KEY,
+        PluginAnnotationProcessor.NUKKIT_PATH_KEY
+})
 @AutoService(Processor.class)
 public class PluginAnnotationProcessor extends AbstractProcessor {
-    public static final String PLUGIN_APT_RESULT_PATH_KEY = "pluginAnnotationProcessResultPath";
-    public static final String PLUGIN_APT_DEFAULT_PATH = "spigradle/plugin-main";
-    public String pluginName = "";
+    public static final String SPIGOT_PATH_KEY = "spigotAnnotationResultPath";
+    public static final String BUNGEE_PATH_KEY = "bungeeAnnotationResultPath";
+    public static final String NUKKIT_PATH_KEY = "nukkitAnnotationResultPath";
+    public static final String GENERAL_PATH_KEY = "pluginAnnotationResultPath";
+    private final Map<PluginType, String> resultByType = new HashMap<>();
 
     @SneakyThrows
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        if (roundEnv.processingOver() && !pluginName.isEmpty()) {
-            val file = new File(processingEnv.getOptions().getOrDefault(PLUGIN_APT_RESULT_PATH_KEY, "build/" + PLUGIN_APT_DEFAULT_PATH));
-            file.getParentFile().mkdirs();
-            try (val writer = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8)) {
-                writer.write(pluginName);
+        if (roundEnv.processingOver()) {
+            for (Map.Entry<PluginType, String> entry : resultByType.entrySet()) {
+                val type = entry.getKey();
+                val result = entry.getValue();
+                if (result.isEmpty()) continue;
+                val file = new File(processingEnv.getOptions().getOrDefault(type.getPathKey(), type.getDefaultPath()));
+                write(file, result).ifPresent(PluginAnnotationProcessor::error);
             }
         } else {
-            Stream.of(PluginMain.class, Plugin.class)
-                    .flatMap(annotation -> roundEnv.getElementsAnnotatedWith(annotation).stream()
-                            .filter(it -> it instanceof QualifiedNameable && it.getAnnotation(annotation) != null))
-                    .findAny()
-                    .map(it -> ((QualifiedNameable) it).getQualifiedName().toString())
-                    .ifPresent(name -> pluginName = name);
+            Arrays.stream(PluginType.values())
+                    .map(type -> type.getAnnotations().stream()
+                            .map(annotation -> findClassName(roundEnv, annotation).orElse(null))
+                            .filter(Objects::nonNull)
+                            .findFirst()
+                            .map(name -> putResult(type, name))
+                            .orElse(doNothing()))
+                    .forEach(Runnable::run);
         }
         return true;
+    }
+
+    private Runnable putResult(PluginType type, String result) {
+        return () -> resultByType.put(type, result);
+    }
+
+    private static Optional<String> findClassName(RoundEnvironment roundEnv, Class<? extends Annotation> annotation) {
+        return roundEnv.getElementsAnnotatedWith(annotation).stream()
+                .filter(it -> it instanceof QualifiedNameable && it.getAnnotation(annotation) != null)
+                .findFirst()
+                .map(it -> ((QualifiedNameable) it).getQualifiedName().toString());
+    }
+
+    private static void error(Throwable throwable) {
+        throw new IllegalStateException("Error while processing the annotations", throwable);
+    }
+
+    private static Runnable doNothing() {
+        return () -> { /* Nothing */ };
+    }
+
+    private static Optional<Exception> write(File file, String contents) {
+        File parent = file.getParentFile();
+        if (!parent.mkdirs() && !parent.isDirectory()) {
+            return Optional.of(new IllegalStateException("Couldn't create the parent directories"));
+        }
+        try (val writer = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8)) {
+            writer.write(contents);
+        } catch (Exception ex) {
+            return Optional.of(ex);
+        }
+        return Optional.empty();
     }
 }

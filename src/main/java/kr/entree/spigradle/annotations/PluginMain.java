@@ -22,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The annotation used to specify a main class.
+ * The general annotation used to specify a main class of any plugin.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
