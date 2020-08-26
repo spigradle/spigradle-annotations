@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/spigradle/spigradle-annotations/compare/v2.0.1...v2.1.0) (2020-08-26)
+
+
+### Features
+
+* support multiplatform spigot, nukkit, bungee ([c39db06](https://github.com/spigradle/spigradle-annotations/commit/c39db06e2ed069a0ecb9e45c4194c57a0638ccf7))
+
 ## [2.0.1](https://github.com/spigradle/spigradle-annotations/compare/v2.0.0...v2.0.1) (2020-07-08)
 
 
