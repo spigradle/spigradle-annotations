@@ -24,6 +24,7 @@ import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * Created by JunHyung Im on 2020-08-26
@@ -105,16 +106,15 @@ class AnnotationProcessorTest {
             plugins {
                 id 'java'
             }
-            
             dependencies {
                 compileOnly files('$jarPath')
                 annotationProcessor files('$jarPath')
             }
-            
             compileJava.options.compilerArgs += [${pathArgs.joinToString { "'$it'" }}]
         """.trimIndent())
         val result = createGradleRunner().withArguments("compileJava", "-s").build()
         assertEquals(TaskOutcome.SUCCESS, result.task(":compileJava")?.outcome)
+        assertTrue { "not recognized" !in result.output }
         assertEquals("MySpigotPlugin", spigotPath.readText())
         assertEquals("MyBungeePlugin", bungeePath.readText())
         assertEquals("MyNukkitPlugin", nukkitPath.readText())

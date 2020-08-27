@@ -45,7 +45,8 @@ import java.util.*;
 @SupportedOptions({
         PluginAnnotationProcessor.SPIGOT_PATH_KEY,
         PluginAnnotationProcessor.BUNGEE_PATH_KEY,
-        PluginAnnotationProcessor.NUKKIT_PATH_KEY
+        PluginAnnotationProcessor.NUKKIT_PATH_KEY,
+        PluginAnnotationProcessor.GENERAL_PATH_KEY
 })
 @AutoService(Processor.class)
 public class PluginAnnotationProcessor extends AbstractProcessor {
