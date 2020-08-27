@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/spigradle/spigradle-annotations/compare/v2.1.0...v2.1.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* add missed option `GENERLA_PATH_KEY` ([6bb72bb](https://github.com/spigradle/spigradle-annotations/commit/6bb72bbdd00040e991a00381f32d75373dc85930))
+
 # [2.1.0](https://github.com/spigradle/spigradle-annotations/compare/v2.0.1...v2.1.0) (2020-08-26)
 
 
