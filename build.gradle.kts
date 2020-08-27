@@ -25,7 +25,6 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
     testImplementation(gradleTestKit())
-    implementation(kotlin("stdlib-jdk8"))
 }
 
 configurations {
