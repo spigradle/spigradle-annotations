@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/spigradle/spigradle-annotations/compare/v2.1.1...v2.2.0) (2021-10-06)
+
+
+### Features
+
+* will be deprecated from Spigradle ([123d92a](https://github.com/spigradle/spigradle-annotations/commit/123d92a50502e7a1f4c806918ec54761f731f8d2))
+
 ## [2.1.1](https://github.com/spigradle/spigradle-annotations/compare/v2.1.0...v2.1.1) (2020-08-27)
 
 
