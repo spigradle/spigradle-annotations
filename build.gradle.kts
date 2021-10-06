@@ -12,15 +12,16 @@ version = VersionTask.readVersion(project)
 
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 val annotationProcessorCompile: Configuration by configurations.creating
 
 dependencies {
-    annotationProcessorCompile("org.projectlombok:lombok:1.18.12")
-    annotationProcessorCompile("com.google.auto.service:auto-service:1.0-rc7")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+    annotationProcessorCompile("org.projectlombok:lombok:1.18.20")
+    annotationProcessorCompile("com.google.auto.service:auto-service:1.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     testImplementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
