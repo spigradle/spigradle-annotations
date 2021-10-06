@@ -3,7 +3,7 @@
 import kr.entree.spigradle.annotations.build.VersionTask
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.5.31"
     `spigradle-annotations-publish`
 }
 
