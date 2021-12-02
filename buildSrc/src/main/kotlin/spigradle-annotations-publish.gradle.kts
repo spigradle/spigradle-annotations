@@ -11,6 +11,24 @@ publishing {
             from(components["java"])
         }
     }
+    repositories {
+        maven {
+            name = "sonatypeReleases"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = findProperty("ossrhUsername")?.toString()
+                password = findProperty("ossrhPassword")?.toString()
+            }
+        }
+        maven {
+            name = "sonatypeSnapshots"
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            credentials {
+                username = findProperty("ossrhUsername")?.toString()
+                password = findProperty("ossrhPassword")?.toString()
+            }
+        }
+    }
 }
 
 signing {
