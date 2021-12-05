@@ -23,11 +23,8 @@ import java.lang.annotation.Target;
 
 /**
  * The general annotation used to specify a main class of any plugin.
- *
- * @deprecated won't be used from Spigradle since this(2.2.0), spigradle(2.3.0)
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
-@Deprecated
 public @interface PluginMain {
 }
